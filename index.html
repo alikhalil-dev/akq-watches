@@ -47,7 +47,7 @@
             transform: translate(-50%, -50%);
             z-index: 0;
             object-fit: cover;
-            pointer-events: none; /* لمنع ظهور أي أيقونات تشغيل */
+            pointer-events: none;
         }
         .hero-overlay {
             position: absolute;
@@ -102,7 +102,7 @@
             object-fit: cover;
         }
 
-        /* 4. الزرار الفضي الزجاجي الجديد */
+        /* 4. الزرار الفضي الزجاجي */
         .whatsapp-btn {
             width: 100%;
             background: rgba(255, 255, 255, 0.1) !important;
@@ -132,7 +132,6 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <!-- تم تعديل مسار الفيديو هنا ليعمل بنجاح -->
         <video autoplay loop muted playsinline class="hero-video">
             <source src="assets/videos/video.mp4" type="video/mp4">
         </video>
@@ -160,16 +159,16 @@
         <p>&copy; 2026 AKQ WATCHES. All rights reserved.</p>
     </footer>
 
-    <!-- سكربت الساعات -->
+    <!-- سكربت الساعات الذكي (يقرأ من الفولدر ومن الصفحة الرئيسية معاً) -->
     <script>
-        const totalWatches = 190; 
+        const totalWatches = 194; 
         const container = document.getElementById('watches-container');
         let watchesHTML = '';
         
         for(let i = 1; i <= totalWatches; i++) {
             watchesHTML += `
             <div class="product-card">
-                <img src="assets/images/watch${i}.jpg" alt="Model ${i}" loading="lazy" onerror="this.src='assets/images/logo.png'">
+                <img src="assets/images/watch${i}.jpg" alt="Model ${i}" loading="lazy" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='watch${i}.jpg';}else{this.parentElement.style.display='none';}">
                 <a href="https://wa.me/201141091027?text=Hello,%20AKQ,%20price%20for%20Model%20${i}" class="btn whatsapp-btn" target="_blank">ASK PRICE</a>
             </div>
             `;
